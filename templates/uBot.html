@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <p>Welcome to uBot page!</p>
+    <p><a href="{{ url_for('hello_world') }}">Home</a></p>
+    <button id="btn">JavaScript Counter</button>
+    <p id="message"></p>
+
+    <!-- New button to trigger Python function -->
+    <button id="pythonBtn">Python Counter</button>
+    <p id="pythonOutput"></p>
+    <p id="res"></p>
+    <br>
+    <input id="inputField" type="text" placeholder="Write something here...">
+    <button id="sendBtn">Send</button>
+
+    <script>
+        let count = 0;
+        document.getElementById("btn").onclick = function() {
+            count++;
+            document.getElementById("message").innerText = "You have pressed the button " + count + " times";
+        }
+
+        document.getElementById("pythonBtn").onclick = function() {
+        
+        // Data to be sent to the server
+        exampleVar = document.getElementById("inputField").value;
+        const dataToSend = { exampleKey: exampleVar }; // Replace with your actual data
+
+        fetch("/run_python", {
+            method: "POST", // Use POST to send data
+            headers: {
+                "Content-Type": "application/json" // Specify the content type
+            },
+            body: JSON.stringify(dataToSend) // Convert data to JSON string
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("pythonOutput").innerText = "Current counter value: " + data.count;
+            document.getElementById("res").innerText = "Received value: " + data.exampleValue;
+        })
+        .catch(error => console.error('Error:', error));
+        };
+    </script>
+</body>
+</html>

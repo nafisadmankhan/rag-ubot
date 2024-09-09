@@ -1,1 +1,7 @@
 Flask==2.3.2
+pandas==2.2.2
+torch==2.4.0
+numpy==1.26.4
+transformers==4.44.0 # pip install transformers==4.44.0
+tqdm==4.66.4
+faiss-cpu==1.7.2 # pip install faiss-cpu==1.7.2

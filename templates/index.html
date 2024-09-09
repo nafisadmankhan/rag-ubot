@@ -1,7 +1,7 @@
 <head>
     <title>{{ title }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
-
+</head>
 <body>
     <div class="App">
         <header class="App-header">
@@ -12,6 +12,7 @@
             <p class="small">
                 Edit <code>templates/index.html</code> and refresh to see your changes!
             </p>
+            <p><a href="{{ url_for('uBot') }}">uBot</a></p>
         </header>
     </div>
 </body>
